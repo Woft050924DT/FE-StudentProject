@@ -1,6 +1,5 @@
-
-import { AuthService } from '../services/AuthService';
-import type { LoginDto } from '../models/dto/auth.types';
+import { AuthService } from "../services/AuthService";
+import type { LoginDto } from "../models/dto/auth.types";
 
 export class AuthController {
   static async login(username: string, password: string) {
@@ -8,5 +7,3 @@ export class AuthController {
     return AuthService.login(credentials);
   }
 }
-
-

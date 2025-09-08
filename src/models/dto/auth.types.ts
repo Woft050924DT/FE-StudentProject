@@ -23,9 +23,9 @@ export interface RegisterDto {
   lastName?: string;
 }
 
-export interface ForgotPasswordDto{
-    email: string;
-} 
+export interface ForgotPasswordDto {
+  email: string;
+}
 
 export interface ResetPasswordDto {
   token: string;

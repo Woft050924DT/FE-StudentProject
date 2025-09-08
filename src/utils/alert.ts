@@ -1,4 +1,4 @@
-import Swal, { type SweetAlertIcon } from 'sweetalert2';
+import Swal, { type SweetAlertIcon } from "sweetalert2";
 
 type AlertOptions = {
   title?: string;
@@ -7,57 +7,55 @@ type AlertOptions = {
   cancelButtonText?: string;
 };
 
-export const alertSuccess = async (text: string, title = 'Thành công') => {
+export const alertSuccess = async (text: string, title = "Thành công") => {
   return Swal.fire({
     title,
     text,
-    icon: 'success',
-    confirmButtonText: 'OK'
+    icon: "success",
+    confirmButtonText: "OK",
   });
 };
 
-export const alertError = async (text: string, title = 'Thất bại') => {
+export const alertError = async (text: string, title = "Thất bại") => {
   return Swal.fire({
     title,
     text,
-    icon: 'error',
-    confirmButtonText: 'OK'
+    icon: "error",
+    confirmButtonText: "OK",
   });
 };
 
-export const alertInfo = async (text: string, title = 'Thông báo') => {
+export const alertInfo = async (text: string, title = "Thông báo") => {
   return Swal.fire({
     title,
     text,
-    icon: 'info',
-    confirmButtonText: 'OK'
+    icon: "info",
+    confirmButtonText: "OK",
   });
 };
 
-export const alertWarning = async (text: string, title = 'Cảnh báo') => {
+export const alertWarning = async (text: string, title = "Cảnh báo") => {
   return Swal.fire({
     title,
     text,
-    icon: 'warning',
-    confirmButtonText: 'OK'
+    icon: "warning",
+    confirmButtonText: "OK",
   });
 };
 
 export const confirmAlert = async ({
-  title = 'Xác nhận',
+  title = "Xác nhận",
   text,
-  confirmButtonText = 'Đồng ý',
-  cancelButtonText = 'Hủy'
+  confirmButtonText = "Đồng ý",
+  cancelButtonText = "Hủy",
 }: AlertOptions): Promise<boolean> => {
   const result = await Swal.fire({
     title,
     text,
-    icon: 'question' as SweetAlertIcon,
+    icon: "question" as SweetAlertIcon,
     showCancelButton: true,
     confirmButtonText,
-    cancelButtonText
+    cancelButtonText,
   });
   return result.isConfirmed === true;
 };
-
-

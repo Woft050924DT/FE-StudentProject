@@ -1,5 +1,4 @@
 // src/App.tsx
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 
@@ -8,6 +7,7 @@ import { Toaster } from 'react-hot-toast';
 import LoginForm from './views/auth/LoginForm';
 import RegisterForm from './views/auth/RegisterForm';
 import MainForm from './views/Main/MainForm';
+import ProfilePage from './views/Profile/ProfilePage';
 
 
 function App() {
@@ -24,6 +24,7 @@ function App() {
 
             {/* Protected Routes */}
             <Route path="/main" element={<MainForm />} />
+            <Route path="/profile" element={<ProfilePage />} />
 
             {/* Default redirect */}
             <Route path="/" element={<Navigate to="/auth/login" replace />} />

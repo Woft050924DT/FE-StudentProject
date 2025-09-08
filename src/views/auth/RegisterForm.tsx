@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import type { FormEvent } from 'react';
+import React, { useState } from "react";
+import type { FormEvent } from "react";
 
 const RegisterForm = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleRegister = (e: FormEvent) => {
     e.preventDefault();
     // Xử lý logic đăng ký ở đây
     if (password !== confirmPassword) {
-      console.log('Mật khẩu không khớp');
+      console.log("Mật khẩu không khớp");
     } else {
-      console.log('Đăng ký với email:', email, 'và password:', password);
+      console.log("Đăng ký với email:", email, "và password:", password);
     }
   };
 
@@ -21,7 +21,12 @@ const RegisterForm = () => {
       <h2 className="text-2xl font-semibold text-center mb-4">Đăng Ký</h2>
       <form onSubmit={handleRegister}>
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700" htmlFor="email">Email</label>
+          <label
+            className="block text-sm font-medium text-gray-700"
+            htmlFor="email"
+          >
+            Email
+          </label>
           <input
             type="email"
             id="email"
@@ -32,7 +37,12 @@ const RegisterForm = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700" htmlFor="password">Mật khẩu</label>
+          <label
+            className="block text-sm font-medium text-gray-700"
+            htmlFor="password"
+          >
+            Mật khẩu
+          </label>
           <input
             type="password"
             id="password"
@@ -43,7 +53,12 @@ const RegisterForm = () => {
           />
         </div>
         <div className="mb-6">
-          <label className="block text-sm font-medium text-gray-700" htmlFor="confirmPassword">Xác nhận mật khẩu</label>
+          <label
+            className="block text-sm font-medium text-gray-700"
+            htmlFor="confirmPassword"
+          >
+            Xác nhận mật khẩu
+          </label>
           <input
             type="password"
             id="confirmPassword"
