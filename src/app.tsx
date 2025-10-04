@@ -8,7 +8,8 @@ import { Toaster } from 'react-hot-toast';
 import LoginForm from './views/auth/LoginForm';
 import RegisterForm from './views/auth/RegisterForm';
 import MainForm from './views/Main/MainForm';
-
+import ReportForm from './views/Layout/ReportForm';
+import ReviewForm from "./views/Layout/Review";
 
 function App() {
   return (
@@ -18,16 +19,17 @@ function App() {
           <Toaster position="top-right" />
           <Routes>
             {/* Public Routes */}
+            <Route path="Layout/report" element={<ReportForm />} />
             <Route path="/auth/login" element={<LoginForm />} />
             <Route path="/auth/register" element={<RegisterForm />} />
-
+            <Route path='/Layout/review' element={<ReviewForm />} />
 
             {/* Protected Routes */}
             <Route path="/main" element={<MainForm />} />
 
             {/* Default redirect */}
-            <Route path="/" element={<Navigate to="/auth/login" replace />} />
-            <Route path="*" element={<Navigate to="/auth/register" replace />} />
+            <Route path="/" element={<Navigate to="Layout/review" replace />} />
+            {/* <Route path="*" element={<Navigate to="/auth/register" replace />} /> */}
           </Routes>
         </div>
     </Router>
