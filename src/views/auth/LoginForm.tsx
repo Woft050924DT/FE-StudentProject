@@ -13,6 +13,7 @@ import { alertSuccess, alertError } from "../../utils/alert";
 const LoginForm: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [credentialError, setCredentialError] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const {
@@ -24,13 +25,15 @@ const LoginForm: React.FC = () => {
   });
 
   const onSubmit = async (data: LoginDto) => {
-    // Add console.log to verify onSubmit execution
     console.log("onSubmit triggered with data:", data);
     setIsLoading(true);
+    setCredentialError(null);
     try {
       await AuthController.login(data.username, data.password);
       await alertSuccess("Đăng nhập thành công!");
-      navigate("/main", { replace: true });
+      
+      // Chuyển hướng dựa trên role của user
+      navigate("/dashboard", { replace: true });
     } catch (err: unknown) {
       const anyErr = err as {
         response?: { data?: { message?: string } };
@@ -40,6 +43,7 @@ const LoginForm: React.FC = () => {
         anyErr?.response?.data?.message ||
         anyErr?.message ||
         "Tên đăng nhập hoặc mật khẩu không đúng";
+      setCredentialError("Tên đăng nhập hoặc mật khẩu không đúng");
       await alertError(message);
     } finally {
       setIsLoading(false);
@@ -65,6 +69,11 @@ const LoginForm: React.FC = () => {
         </div>
 
         <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
+          {credentialError && (
+            <div className="rounded-md bg-red-50 border border-red-200 p-3 text-sm text-red-700">
+              {credentialError}
+            </div>
+          )}
           <div className="space-y-4">
             <div>
               <label htmlFor="username" className="sr-only">

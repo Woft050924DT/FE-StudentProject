@@ -1,5 +1,4 @@
 import React from "react";
-import DashboardLayout from "../../layout/DashboardLayout";
 import { AuthService } from "../../services/AuthService";
 import type { User } from "../../models/dto/user.interface";
 
@@ -16,7 +15,6 @@ const ProfilePage: React.FC = () => {
 
   if (!user) {
     return (
-      <DashboardLayout>
         <div className="p-4">
           <div className="bg-white border border-indigo-100 rounded-lg p-6 shadow-sm">
             <h1 className="text-xl font-semibold text-indigo-700">
@@ -27,7 +25,6 @@ const ProfilePage: React.FC = () => {
             </p>
           </div>
         </div>
-      </DashboardLayout>
     );
   }
 
@@ -37,7 +34,6 @@ const ProfilePage: React.FC = () => {
     user.email;
 
   return (
-    <DashboardLayout>
       <div className="p-4">
         <div className="bg-white border border-indigo-100 rounded-lg p-6 shadow-sm max-w-2xl">
           <h1 className="text-xl font-semibold text-indigo-700">
@@ -70,7 +66,7 @@ const ProfilePage: React.FC = () => {
               </label>
               <input
                 className="mt-1 w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
-                value={user.role}
+                value={user.roles.join(', ')}
                 readOnly
               />
             </div>
@@ -87,7 +83,6 @@ const ProfilePage: React.FC = () => {
           </div>
         </div>
       </div>
-    </DashboardLayout>
   );
 };
 

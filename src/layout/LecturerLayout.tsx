@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Header from "./Header";
-import Sidebar from "./Sidebar";
+import LecturerSidebar from "./LecturerSidebar";
 
-type DashboardLayoutProps = {
+type LecturerLayoutProps = {
   children: React.ReactNode;
 };
 
-const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
+const LecturerLayout: React.FC<LecturerLayoutProps> = ({ children }) => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const currentTime = new Date().toLocaleString('vi-VN', {
     hour: '2-digit',
@@ -21,7 +21,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
     <div className="min-h-screen bg-gray-50">
       <Header />
       <div className="flex relative">
-        <Sidebar collapsed={sidebarCollapsed} />
+        <LecturerSidebar collapsed={sidebarCollapsed} />
         
         {/* Collapse Button - positioned at the center of the sidebar edge */}
         <button
@@ -49,4 +49,4 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
   );
 };
 
-export default DashboardLayout;
+export default LecturerLayout;

@@ -1,13 +1,14 @@
 export interface User {
-  id: string;
+  id: number;
   email: string;
+  username: string;
+  fullName?: string;
   firstName?: string;
   lastName?: string;
-  fullName?: string;
   picture?: string;
   provider?: "local" | "google" | "facebook";
-  role: "user" | "admin" | "moderator";
-  emailVerified: boolean;
-  createdAt: string;
+  roles: string[]; // API trả về mảng roles thay vì role đơn
+  emailVerified?: boolean;
+  createdAt?: string;
   lastLogin?: string;
 }

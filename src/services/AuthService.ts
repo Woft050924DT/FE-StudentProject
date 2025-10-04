@@ -1,4 +1,3 @@
-// src/services/auth.service.ts
 import { apiService } from "./ApiService";
 import type {
   AuthResponse,
@@ -84,7 +83,6 @@ export class AuthService {
     return response.data;
   }
 
-  // Logout
   static async logout(): Promise<void> {
     try {
       await apiService.post("/auth/logout");
@@ -121,5 +119,26 @@ export class AuthService {
 
   static isAuthenticated(): boolean {
     return !!this.getStoredToken();
+  }
+
+  static hasRole(role: string): boolean {
+    const user = this.getStoredUser();
+    return user ? user.roles.includes(role) : false;
+  }
+
+  static isAdmin(): boolean {
+    return this.hasRole("admin");
+  }
+
+  static isModerator(): boolean {
+    return this.hasRole("moderator");
+  }
+
+  static isTeacher(): boolean {
+    return this.hasRole("teacher");
+  }
+
+  static isLecturer(): boolean {
+    return this.hasRole("lecturer");
   }
 }

@@ -1,16 +1,16 @@
 import React from "react";
-import { Search, User, Users, BookOpen, FileCheck } from "lucide-react";
+import { Search, UserPlus, Shield, BarChart3, Settings } from "lucide-react";
 
-interface SidebarProps {
+interface AdminSidebarProps {
   collapsed?: boolean;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ collapsed = false }) => {
+const AdminSidebar: React.FC<AdminSidebarProps> = ({ collapsed = false }) => {
   const menuItems = [
-    { icon: User, label: "Thông tin sinh viên", href: "/student/info", active: true },
-    { icon: BookOpen, label: "Đăng ký đề tài đồ án tốt nghiệp", href: "#" },
-    { icon: Users, label: "Xem giảng viên phản biện và hội đồng", href: "#" },
-    { icon: FileCheck, label: "Kết quả bảo vệ", href: "#" },
+    { icon: UserPlus, label: "Tạo tài khoản mới", href: "/admin/create-account" },
+    { icon: Shield, label: "Phân quyền tài khoản", href: "/admin/manage-permissions" },
+    { icon: BarChart3, label: "Thống kê hệ thống", href: "/admin/statistics" },
+    { icon: Settings, label: "Cài đặt hệ thống", href: "/admin/settings" },
   ];
 
   return (
@@ -37,11 +37,7 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed = false }) => {
             <a
               key={index}
               href={item.href}
-              className={`flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                item.active
-                  ? "bg-blue-100 text-blue-700 border-r-2 border-blue-600"
-                  : "text-gray-700 hover:bg-gray-100"
-              }`}
+              className="flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors"
               title={collapsed ? item.label : undefined}
             >
               <Icon className="h-4 w-4 flex-shrink-0" />
@@ -54,4 +50,4 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed = false }) => {
   );
 };
 
-export default Sidebar;
+export default AdminSidebar;
