@@ -19,10 +19,13 @@ export class AuthService {
     if (response.data.access_token) {
       localStorage.setItem("access_token", response.data.access_token);
       if (response.data.user) {
-        localStorage.setItem("user", JSON.stringify(response.data.user));
+        const userWithRoles = {
+          ...response.data.user,
+          roles: response.data.user.roles ?? ["student"], // fallback mặc định
+        };
+        localStorage.setItem("user", JSON.stringify(userWithRoles));
       }
     }
-
     return response.data;
   }
 
@@ -114,7 +117,10 @@ export class AuthService {
 
   static getStoredUser(): User | null {
     const userStr = localStorage.getItem("user");
-    return userStr ? JSON.parse(userStr) : null;
+    if (!userStr) return null;
+    const user = JSON.parse(userStr);
+    if (!user.roles) user.roles = ["student"]; // fallback lần nữa
+    return user;
   }
 
   static isAuthenticated(): boolean {
