@@ -15,6 +15,12 @@ export interface Topic {
   status: 'available' | 'full' | 'closed';
   createdAt: string;
   updatedAt: string;
+  thesisRoundId?: number;
+  instructorId?: number;
+  thesisRound?: {
+    id: number;
+    roundName: string;
+  };
 }
 
 export interface TopicRegistration {

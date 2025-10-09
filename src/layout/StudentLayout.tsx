@@ -22,8 +22,6 @@ const StudentLayout: React.FC<StudentLayoutProps> = ({ children }) => {
       <Header />
       <div className="flex relative">
         <StudentSidebar collapsed={sidebarCollapsed} />
-        
-        {/* Collapse Button - positioned at the center of the sidebar edge */}
         <button
           onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
           className={`absolute top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white border border-gray-300 hover:bg-gray-50 rounded-full flex items-center justify-center shadow-md transition-all duration-300 ${
@@ -40,7 +38,6 @@ const StudentLayout: React.FC<StudentLayoutProps> = ({ children }) => {
         
         <main className="flex-1 min-w-0 bg-white pb-12">{children}</main>
       </div>
-      {/* Status Bar */}
       <div className="fixed bottom-0 left-0 right-0 bg-gray-100 border-t border-gray-200 px-6 py-2 flex justify-between items-center text-sm text-gray-600">
         <div>Nơi làm việc: CÔNG THÔNG TIN SỐ HÓA KHOA CÔNG NGHỆ THÔNG TIN</div>
         <div>{currentTime}</div>

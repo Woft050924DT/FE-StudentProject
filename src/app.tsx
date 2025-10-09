@@ -21,6 +21,7 @@ import RegisterTopicPage from './views/student/RegisterTopicPage';
 // Lecturer Pages
 import LecturerDashboard from './views/lecturer/LecturerDashboard';
 import TopicManagementPage from './views/lecturer/TopicManagementPage';
+import ConfirmStudentRegistrationPage from './views/lecturer/ConfirmStudentRegistrationPage';
 
 // Layout Components
 import StudentLayout from './layout/StudentLayout';
@@ -205,12 +206,7 @@ function App() {
               element={
                 <RoleBasedRoute allowedRoles={['lecturer', 'teacher', 'admin']}>
                   <LecturerLayout>
-                    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-                      <div className="text-center">
-                        <h1 className="text-2xl font-bold text-gray-900 mb-4">Xác nhận sinh viên đăng ký đề tài</h1>
-                        <p className="text-gray-600">Trang này đang được phát triển...</p>
-                      </div>
-                    </div>
+                    <ConfirmStudentRegistrationPage />
                   </LecturerLayout>
                 </RoleBasedRoute>
               } 

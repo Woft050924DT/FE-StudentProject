@@ -17,7 +17,6 @@ const Header: React.FC = () => {
     return () => window.removeEventListener("storage", onStorage);
   }, []);
 
-  // Close dropdown when clicking outside
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Element;
@@ -84,7 +83,6 @@ const Header: React.FC = () => {
       <div className="flex items-center gap-4">
         {currentUser ? (
           <>
-            {/* Icons */}
             <button className="p-2 hover:bg-white hover:bg-opacity-10 rounded-full transition-colors">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
@@ -109,7 +107,6 @@ const Header: React.FC = () => {
               <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">4</span>
             </button>
 
-            {/* User info */}
             <div className="relative user-dropdown">
               <div 
                 className="flex items-center gap-3 cursor-pointer select-none hover:bg-white hover:bg-opacity-10 rounded-md px-2 py-1 transition-colors"
@@ -153,7 +150,6 @@ const Header: React.FC = () => {
               )}
             </div>
 
-            {/* Add button */}
             <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
               + Thêm
             </button>

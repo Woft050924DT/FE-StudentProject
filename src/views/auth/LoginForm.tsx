@@ -25,16 +25,28 @@ const LoginForm: React.FC = () => {
   });
 
   const onSubmit = async (data: LoginDto) => {
+    console.log("=== LOGIN FORM SUBMIT START ===");
     console.log("onSubmit triggered with data:", data);
     setIsLoading(true);
     setCredentialError(null);
+    
     try {
-      await AuthController.login(data.username, data.password);
+      console.log("Calling AuthController.login...");
+      const result = await AuthController.login(data.username, data.password);
+      console.log("AuthController.login result:", result);
+      
+      // Kiểm tra token sau khi login
+      const savedToken = localStorage.getItem("access_token");
+      console.log("Token in localStorage after login:", savedToken);
+      
       await alertSuccess("Đăng nhập thành công!");
       
       // Chuyển hướng dựa trên role của user
       navigate("/dashboard", { replace: true });
     } catch (err: unknown) {
+      console.error("=== LOGIN FORM ERROR ===");
+      console.error("Error caught in LoginForm:", err);
+      
       const anyErr = err as {
         response?: { data?: { message?: string } };
         message?: string;
@@ -43,10 +55,13 @@ const LoginForm: React.FC = () => {
         anyErr?.response?.data?.message ||
         anyErr?.message ||
         "Tên đăng nhập hoặc mật khẩu không đúng";
+      
+      console.error("Error message:", message);
       setCredentialError("Tên đăng nhập hoặc mật khẩu không đúng");
       await alertError(message);
     } finally {
       setIsLoading(false);
+      console.log("=== LOGIN FORM SUBMIT END ===");
     }
   };
 

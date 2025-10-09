@@ -11,19 +11,64 @@ import type { User } from "../models/dto/user.interface";
 
 export class AuthService {
   static async login(credentials: LoginDto): Promise<AuthResponse> {
-    const response = await apiService.post<AuthResponse>(
-      "/auth/login",
-      credentials
-    );
+    try {
+      console.log("=== LOGIN DEBUG START ===");
+      console.log("Sending credentials:", credentials);
+      
+      const response = await apiService.post<AuthResponse>(
+        "/auth/login",
+        credentials
+      );
 
-    if (response.data.access_token) {
-      localStorage.setItem("access_token", response.data.access_token);
-      if (response.data.user) {
-        localStorage.setItem("user", JSON.stringify(response.data.user));
+      console.log("=== LOGIN RESPONSE ===");
+      console.log("Full response object:", response);
+      console.log("Response status:", response.status);
+      console.log("Response data:", response.data);
+      console.log("Response data type:", typeof response.data);
+      console.log("Response data keys:", Object.keys(response.data));
+
+      // Kiểm tra các tên token có thể có
+      const token = response.data.access_token || 
+                    response.data.token || 
+                    response.data.accessToken ||
+                    (response.data as any).access_token;
+
+      console.log("Extracted token:", token);
+      console.log("Token type:", typeof token);
+      console.log("Token length:", token ? token.length : 0);
+
+      if (token) {
+        localStorage.setItem("access_token", token);
+        console.log("✅ Token saved to localStorage successfully");
+        console.log("Token value:", token);
+        
+        const user = response.data.user || (response.data as any).user;
+        if (user) {
+          localStorage.setItem("user", JSON.stringify(user));
+          console.log("✅ User saved to localStorage:", user);
+        } else {
+          console.log("⚠️ No user data in response");
+        }
+      } else {
+        console.error("❌ No token found in response!");
+        console.error("Available keys:", Object.keys(response.data));
+        console.error("Full response data:", response.data);
+        console.error("Checking individual fields:");
+        console.error("- access_token:", response.data.access_token);
+        console.error("- token:", response.data.token);
+        console.error("- accessToken:", response.data.accessToken);
       }
-    }
 
-    return response.data;
+      console.log("=== LOGIN DEBUG END ===");
+      return response.data;
+    } catch (error) {
+      console.error("=== LOGIN ERROR ===");
+      console.error("Error object:", error);
+      console.error("Error message:", (error as any)?.message);
+      console.error("Error response:", (error as any)?.response);
+      console.error("Error response data:", (error as any)?.response?.data);
+      throw error;
+    }
   }
 
   static async register(userData: RegisterDto): Promise<AuthResponse> {
